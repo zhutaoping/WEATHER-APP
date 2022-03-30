@@ -1,5 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap");
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  padding: 16px;
+  font-family: "Noto Sans TC", sans-serif;
+}
+
+.inputBox {
+  padding: 4px;
+  margin-bottom: 8px;
+}
+
+.submitBtn {
+  padding: 4px;
 }
