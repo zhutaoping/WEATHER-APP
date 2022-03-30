@@ -17,14 +17,18 @@ class App {
   }
 
   async _getWeather() {
-    if (!inputBox.value) return;
-    // const coords = await this._getCoords();
-    // const city = await this._getCity(coords);
-    const res = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${inputBox.value}&appid=35525da445f656dff1788bc7bfd5db91&units=metric&lang=zh_tw`
-    );
-    const data = await res.json();
-    this._renderWeather(data);
+    try {
+      if (!inputBox.value) return;
+      // const coords = await this._getCoords();
+      // const city = await this._getCity(coords);
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?q=${inputBox.value}&appid=35525da445f656dff1788bc7bfd5db91&units=metric&lang=zh_tw`
+      );
+      const data = await res.json();
+      this._renderWeather(data);
+    } catch {
+      (err) => console.log(err);
+    }
   }
 
   _renderWeather(data) {
