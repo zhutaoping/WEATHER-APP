@@ -5,36 +5,36 @@ const inputBox = document.querySelector(".inputBox");
 const submitBtn = document.querySelector(".submitBtn");
 
 class App {
-  constructor() {
-    submitBtn.addEventListener("click", this._getWeather.bind(this));
+	constructor() {
+		submitBtn.addEventListener("click", this._getWeather.bind(this));
 
-    inputBox.addEventListener("keyup", function (e) {
-      if (e.keyCode === 13) {
-        e.preventDefault();
-        submitBtn.click();
-      }
-    });
-  }
+		inputBox.addEventListener("keyup", function (e) {
+			if (e.keyCode === 13) {
+				e.preventDefault();
+				submitBtn.click();
+			}
+		});
+	}
 
-  async _getWeather() {
-    try {
-      if (!inputBox.value) return;
-      // const coords = await this._getCoords();
-      // const city = await this._getCity(coords);
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${inputBox.value}&appid=35525da445f656dff1788bc7bfd5db91&units=metric&lang=zh_tw`
-      );
-      const data = await res.json();
-      this._renderWeather(data);
-    } catch {
-      (err) => console.log(err);
-    }
-  }
+	async _getWeather() {
+		try {
+			if (!inputBox.value) return;
+			// const coords = await this._getCoords();
+			// const city = await this._getCity(coords);
+			const res = await fetch(
+				`https://api.openweathermap.org/data/2.5/weather?q=${inputBox.value}&appid=35525da445f656dff1788bc7bfd5db91&units=metric&lang=zh_tw`
+			);
+			const data = await res.json();
+			this._renderWeather(data);
+		} catch {
+			(err) => console.log(err);
+		}
+	}
 
-  _renderWeather(data) {
-    weatherContainer.innerHTML = "";
+	_renderWeather(data) {
+		weatherContainer.innerHTML = "";
 
-    const html = `
+		const html = `
       <div class="city__data">
         <h2 class="name">城市：${data.name}</h2>
         <h2 class="descriptiion">天氣：${data.weather[0].description}
@@ -48,33 +48,33 @@ class App {
         </h2>
       </div>
     `;
-    weatherContainer.insertAdjacentHTML("beforeend", html);
-  }
+		weatherContainer.insertAdjacentHTML("beforeend", html);
+	}
 
-  // async _getCoords() {
-  //   try {
-  //     const resPos = await new Promise((resolve, reject) => {
-  //       navigator.geolocation.getCurrentPosition(resolve, reject);
-  //     });
-  //     const coords = [resPos.coords.latitude, resPos.coords.longitude];
-  //     return coords;
-  //   } catch {
-  //     (err) => console.log(err);
-  //   }
-  // }
+	// async _getCoords() {
+	//   try {
+	//     const resPos = await new Promise((resolve, reject) => {
+	//       navigator.geolocation.getCurrentPosition(resolve, reject);
+	//     });
+	//     const coords = [resPos.coords.latitude, resPos.coords.longitude];
+	//     return coords;
+	//   } catch {
+	//     (err) => console.log(err);
+	//   }
+	// }
 
-  // async _getCity(coords) {
-  //   try {
-  //     const resGeo = await fetch(
-  //       `https://geocode.xyz/${coords[0]},${coords[1]}?geoit=json`
-  //     );
-  //     if (!resGeo.ok) throw new Error("Problem getting location data");
-  //     const dataGeo = await resGeo.json();
-  //     const city = dataGeo.city.split(" ");
-  //     return city;
-  //   } catch {
-  //     (err) => console.log(err);
-  //   }
-  // }
+	// async _getCity(coords) {
+	//   try {
+	//     const resGeo = await fetch(
+	//       `https://geocode.xyz/${coords[0]},${coords[1]}?geoit=json`
+	//     );
+	//     if (!resGeo.ok) throw new Error("Problem getting location data");
+	//     const dataGeo = await resGeo.json();
+	//     const city = dataGeo.city.split(" ");
+	//     return city;
+	//   } catch {
+	//     (err) => console.log(err);
+	//   }
+	// }
 }
 const run = new App();
